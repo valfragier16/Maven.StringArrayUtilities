@@ -86,6 +86,12 @@ public class StringArrayUtils {
      */ // TODO
     public static boolean isPalindromic(String[] array) {
 
+        for(int i = 0; i < array.length/ 2; i++){
+            // array[index from the end] is not equal to array[index]
+            if(array[array.length - 1 - i] != array[i]){
+                return false;
+            }
+        }
 
         return true;
     }
@@ -95,7 +101,39 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+        char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+
+        boolean[] letterMap = new boolean[26];
+
+        String output = "";
+
+        for(String s : array){
+            //Filling with array parameter
+            output += s.toLowerCase();
+        }
+
+        //check the string (every letter in output)
+        for(int i = 0; i < output.length(); i++){
+            // checks through the alphabet array - checks against current letter in string
+            for(int j = 0; j < alphabet.length;  j++) {
+
+                if(output.charAt(i) == alphabet[j]) {
+                    // if current letter in output is equal to alphabet letter at location j  = true
+                    letterMap[j] = true;
+                }
+            }
+        }
+
+
+        for(boolean b : letterMap){
+            if(b == false){
+                return false;
+            }
+        }
+
+
+        return true;
+
     }
 
     /**
@@ -104,7 +142,17 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int count = 0;
+
+        // loop through the array
+        for(int i = 0; i < array.length; i++) {
+            // check the value against the array
+            if(value == array[i])
+                // count through the array
+                count++;
+        }
+
+        return count;
     }
 
     /**
@@ -113,6 +161,14 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
+
+
+        for(int i = 0; i < array.length; i++){
+            if(){
+
+            }
+
+        }
         return null;
     }
 
