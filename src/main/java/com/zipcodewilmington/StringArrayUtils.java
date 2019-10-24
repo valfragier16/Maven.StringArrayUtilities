@@ -161,23 +161,38 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-
-
-        for(int i = 0; i < array.length; i++){
-            if(){
-
+        String[] output = new String[array.length - 1];
+        int count = 0;
+        for (String i : array) {
+            if (!i.equals(valueToRemove)) {
+                output[count++] = i;
             }
-
         }
-        return null;
+        return output;
     }
+
 
     /**
      * @param array array of chars
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        String[] tempArray = new String[array.length];
+        int counter = 1;
+
+        tempArray[0] = array[0];
+        for(int i = 1; i < array.length; i++){
+            if(array[i] != tempArray[counter-1]){
+                tempArray[counter] = array[i];
+                counter++;
+            }
+        }
+        String[] output = new String[counter];
+        for(int i = 0; i < counter; i++){
+            output[i] = tempArray[i];
+        }
+
+        return output;
     }
 
     /**
@@ -185,7 +200,28 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        int counter = 1;
+
+        for(int i = 1; i < array.length; i++)
+            if(array[i] != array[i-1])counter++;
+
+        String[] output = new String[counter];
+        counter = 0;
+
+        StringBuilder sb = new StringBuilder(array[0]);
+        
+        for(int i = 1; i < array.length; i++){
+            if(array[i] == array[i-1]){
+                sb.append(array[i]);
+            }
+            else{
+                output[counter] = sb.toString();
+                sb = new StringBuilder(array[i]);
+                counter++;
+            }
+        }
+        output[counter] = sb.toString();
+        return output;
     }
 
 
